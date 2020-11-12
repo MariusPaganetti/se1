@@ -124,6 +124,7 @@ public class Container
       {
          output+=memberList.get(i).toString()+"\n";
       }
+      System.out.println(output);
    }
 
    public int size()
@@ -152,9 +153,4 @@ public class Container
    {
       memberList.clear();
    }
-
-
-
-
-
 }

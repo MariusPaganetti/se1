@@ -9,17 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestContainer
 {
-   Container con;
-   @BeforeEach
-   public void vorBedingung()
-   {
-      Container con = new Container();
-   }
-
    @Test
    public void testValues() throws Container.ContainerException
    {
-      con = new Container();
+      Container con = new Container();
       con.resetArray();
       Container.Member membNull = null;
       Container.Member mem1 = con.new Member(0);
@@ -40,8 +33,10 @@ public class TestContainer
       /**Test idExist*/
       assertEquals(true,con.idExist(1));
       assertEquals(false,con.idExist(2)); //da ID noch nicht in Container hinzugefuegt
+
       /**Test korrekter String            +dump*/
       assertEquals("Member (ID = 0 )",mem1.toString());
+      con.dump(); //haendisch ueberpruefen, muss gleich "Member (ID = 0/1) sein"
       /**Test Remove*/
       assertEquals("Member (ID = 0 ) geloescht",con.deleteMember(0)); //mem1 loeschen
       assertEquals("Kein Member mit der ID: 5 vorhanden",con.deleteMember(5));//String bei nicht vorhandener ID
@@ -50,10 +45,5 @@ public class TestContainer
       assertEquals(1,con.size());
       con.deleteMember(1);
       assertEquals(0,con.size());
-   }
-   @AfterEach
-   public void NB()
-   {
-      con = null;
    }
 }
