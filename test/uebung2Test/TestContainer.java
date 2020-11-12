@@ -1,6 +1,7 @@
 package uebung2Test;
 
 import org.hbrs.se.ws20.uebung2.Container;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,20 +19,20 @@ public class TestContainer
    @Test
    public void testValues() throws Container.ContainerException
    {
-      Container con = new Container();
-
+      con = new Container();
+      con.resetArray();
       Container.Member membNull = null;
       Container.Member mem1 = con.new Member(0);
       Container.Member mem2 = con.new Member(1);
       Container.Member mem3 = con.new Member(2);
 
       /**Test Exceptionwurf*/
-      assertThrows(Container.ContainerException.class, () -> con.addMember(4));
+      assertThrows(Container.ContainerException.class, () -> con.addMember(membNull));
       /**Test Groesse add*/
       assertEquals(0,con.size());
-      con.addMember(0);
+      con.addMember(mem1);
       assertEquals(1,con.size());
-      con.addMember(1);
+      con.addMember(mem2);
       assertEquals(2,con.size());
       /**Test memberExist*/
       assertEquals(true,con.memberExist(mem1));
@@ -49,5 +50,10 @@ public class TestContainer
       assertEquals(1,con.size());
       con.deleteMember(1);
       assertEquals(0,con.size());
+   }
+   @AfterEach
+   public void NB()
+   {
+      con = null;
    }
 }

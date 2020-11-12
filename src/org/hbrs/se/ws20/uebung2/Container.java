@@ -70,7 +70,7 @@ public class Container
    /**
     *ausgelagerte Funktion fuer deleteMember
     */
-   private Member getMember(int id)
+   private Member getMember(int id) throws ContainerException
    {
       for (int i = 0; i<memberList.size(); i++)
       {
@@ -79,10 +79,10 @@ public class Container
             return memberList.get(i);
          }
       }
-      throw new NoSuchElementException("Kein Member mit der ID: "+id+" vorhanden");
+      return null;
    }
 
-   public String deleteMember(int id)
+   public String deleteMember(int id) throws ContainerException
    {
       String output =""; //temp speichern der Member ID
       try
@@ -91,22 +91,22 @@ public class Container
          output = memberToRemove.toString();
          memberList.remove(memberToRemove);
       }
-      catch(NoSuchElementException e)
+      catch(Exception e)
       {
          return "Kein Member mit der ID: "+id+" vorhanden";
       }
       return output+" geloescht";
    }
 
-   public void addMember(int id) throws ContainerException
+   public void addMember(Member member) throws ContainerException
    {
-      try
+      if(!memberExist(member) && member!=null)
       {
-         memberList.add(getMember(id));
+         memberList.add(member);
       }
-      catch(NoSuchElementException e)
+      else
       {
-         throw new ContainerException(id);
+         throw new ContainerException();
       }
    }
 
@@ -132,9 +132,18 @@ public class Container
       return memberList.contains(member);
    }
    //Funktion, ob eine ID existiert
-   public boolean idExist(int id)
+   public boolean idExist(int id) throws ContainerException
    {
-      return memberExist(getMember(id));
+      if ( null != getMember(id))
+      {
+         return true;
+      }
+      return false;
+   }
+
+   public void resetArray()
+   {
+      memberList.clear();
    }
 
 
