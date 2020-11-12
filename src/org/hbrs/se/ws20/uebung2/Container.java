@@ -12,10 +12,15 @@ public class Container
    public class Member implements org.hbrs.se.ws20.uebung2.Member
    {
       final private int id;
-
+      //eigener interner Zaehler zur Vermeidung von doppelten IDs
       public Member()
       {
          id = zaehlerID++;
+      }
+      //Konstruktur mit Option eigene ID-Nummer zu vergeben
+      public Member(int id)
+      {
+         this.id = id;
       }
 
       @Override
@@ -45,6 +50,11 @@ public class Container
       public ContainerException(String output)
       {
          super(output);
+      }
+
+      public ContainerException(int id)
+      {
+         super("Das Member-Objekt mit der ID "+id+" ist bereits vorhanden!");
       }
    }
 
@@ -88,15 +98,15 @@ public class Container
       return output+" geloescht";
    }
 
-   public void addMember(Member member) throws ContainerException
+   public void addMember(int id) throws ContainerException
    {
-      if (member!=null)
+      try
       {
-         memberList.add(member);
+         memberList.add(getMember(id));
       }
-      else
+      catch(NoSuchElementException e)
       {
-         throw new ContainerException("ungueltige Eingabe");
+         throw new ContainerException(id);
       }
    }
 

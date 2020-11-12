@@ -21,21 +21,24 @@ public class TestContainer
       Container con = new Container();
 
       Container.Member membNull = null;
-      Container.Member mem1 = con.new Member();
-      Container.Member mem2 = con.new Member();
-      Container.Member mem3 = con.new Member();
+      Container.Member mem1 = con.new Member(0);
+      Container.Member mem2 = con.new Member(1);
+      Container.Member mem3 = con.new Member(2);
 
       /**Test Exceptionwurf*/
-      assertThrows(Container.ContainerException.class, () -> con.addMember(membNull));
+      assertThrows(Container.ContainerException.class, () -> con.addMember(4));
       /**Test Groesse add*/
       assertEquals(0,con.size());
-      con.addMember(mem1);
+      con.addMember(0);
       assertEquals(1,con.size());
-      con.addMember(mem2);
+      con.addMember(1);
       assertEquals(2,con.size());
       /**Test memberExist*/
       assertEquals(true,con.memberExist(mem1));
       assertEquals(false,con.memberExist(mem3));
+      /**Test idExist*/
+      assertEquals(true,con.idExist(1));
+      assertEquals(false,con.idExist(2)); //da ID noch nicht in Container hinzugefuegt
       /**Test korrekter String            +dump*/
       assertEquals("Member (ID = 0 )",mem1.toString());
       /**Test Remove*/
