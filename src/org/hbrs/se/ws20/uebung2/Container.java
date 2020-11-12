@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 public class Container
 {
+   private int zaehlerID = 0;
 
     /**
     * interne Klasse Member zur Kapselung der Funktionen
@@ -11,7 +12,6 @@ public class Container
    public class Member implements org.hbrs.se.ws20.uebung2.Member
    {
       final private int id;
-      private int zaehlerID = 0;
 
       public Member()
       {

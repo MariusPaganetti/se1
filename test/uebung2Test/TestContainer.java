@@ -18,6 +18,8 @@ public class TestContainer
    @Test
    public void testValues() throws Container.ContainerException
    {
+      Container con = new Container();
+
       Container.Member membNull = null;
       Container.Member mem1 = con.new Member();
       Container.Member mem2 = con.new Member();
@@ -35,13 +37,14 @@ public class TestContainer
       assertEquals(true,con.memberExist(mem1));
       assertEquals(false,con.memberExist(mem3));
       /**Test korrekter String            +dump*/
-      assertEquals("sssss",mem1.toString());
+      assertEquals("Member (ID = 0 )",mem1.toString());
       /**Test Remove*/
-      assertEquals("String id blabla",con.deleteMember(0)); //mem1 loeschen
-      assertEquals("",con.deleteMember(5));//String bei nicht vorhandener ID
+      assertEquals("Member (ID = 0 ) geloescht",con.deleteMember(0)); //mem1 loeschen
+      assertEquals("Kein Member mit der ID: 5 vorhanden",con.deleteMember(5));//String bei nicht vorhandener ID
       assertEquals(false,con.memberExist(mem1));
       /**Test Size nach delete*/
       assertEquals(1,con.size());
+      con.deleteMember(1);
       assertEquals(0,con.size());
 
 
