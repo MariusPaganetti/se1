@@ -121,6 +121,11 @@ public class Container
    {
       return memberList.contains(member);
    }
+   //Funktion, ob eine ID existiert
+   public boolean idExist(int id)
+   {
+      return memberExist(getMember(id));
+   }
 
 
 

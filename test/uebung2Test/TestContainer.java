@@ -46,7 +46,5 @@ public class TestContainer
       assertEquals(1,con.size());
       con.deleteMember(1);
       assertEquals(0,con.size());
-
-
    }
 }
