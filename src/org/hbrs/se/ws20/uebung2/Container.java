@@ -44,7 +44,7 @@ public class Container
    {
       public ContainerException()
       {
-         super("Fehler in Container");
+         super("Fehler im Container");
       }
 
       public ContainerException(String output)
@@ -100,13 +100,20 @@ public class Container
 
    public void addMember(Member member) throws ContainerException
    {
-      if(!memberExist(member) && member!=null)
+      if(!memberExist(member) && member!=null && !idExist(member.getID()))
       {
          memberList.add(member);
       }
       else
       {
-         throw new ContainerException();
+         try
+         {
+            throw new ContainerException(member.getID());
+         }
+         catch(Exception e)//wegen null PointerException bei leerem add
+         {
+            throw new ContainerException("Member mit Nullpointer wird nicht akzeptiert");
+         }
       }
    }
 
