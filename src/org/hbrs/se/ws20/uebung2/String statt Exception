@@ -1,0 +1,7 @@
+Verwendet man statt der verfügbaren Exceptions einen String hat man keine Vorteile dazugewonnen,
+außer das ein Fehler ggfs. unbemerkt weiter verarbeitet wird und später zu unkosistenten Daten führt.
+Über die Throwsmethode gibt es viele Möglichkeiten Fehler bis zum Anwender weiterzugeben, sodass dieser
+seine Eingabefehler korriegieren kann oder den Entwickler über den Logikfehler informieren kann.
+Über die Stacktraces kann dieser die Fehler genau nachvollziehen. WIrd lediglich ein String benutzt
+gibt es keine allgememeingültige Syntax für Fehler, außer vielleciht -1, dass aber keine schnelle
+Behebung ermöglicht.
