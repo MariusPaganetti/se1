@@ -1,14 +1,17 @@
-package org.hbrs.se.ws20.uebung3.persistence;
+package org.hbrs.se.ws20.uebung3;
 
-public class PersistenceException extends Exception {
+public class PersistenceException extends Exception
+{
 
     private ExceptionType exceptionType;
 
-    public ExceptionType getExceptionTypeType() {
+    public ExceptionType getExceptionTypeType()
+    {
         return this.exceptionType;
     }
 
-    public PersistenceException( ExceptionType exceptionType, String message) {
+    public PersistenceException( ExceptionType exceptionType, String message)
+    {
         super(message);
         this.exceptionType = exceptionType;
     }
@@ -20,7 +23,8 @@ public class PersistenceException extends Exception {
      * then this exception must be caught and transformed to an object of this exception-type, consisting
      * of Type 'ImplementationNotAvailable'. Re-throw the new exception e.g. to a client
      */
-    public enum ExceptionType {
+    public enum ExceptionType
+    {
         ImplementationNotAvailable, ConnectionNotAvailable, NoStrategyIsSet, SaveFailure, LoadFailure
     }
 }

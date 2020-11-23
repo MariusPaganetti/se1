@@ -1,15 +1,17 @@
-package org.hbrs.se.ws20.uebung2;
+package org.hbrs.se.ws20.uebung3;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 public class Container
 {
    private int zaehlerID = 0;
+   private static final Container con = new Container();
+   private ArrayList<Member> memberList =  new ArrayList<Member>();
 
     /**
     * interne Klasse Member zur Kapselung der Funktionen
     */
-   public class Member implements org.hbrs.se.ws20.uebung2.Member
+   public class Member implements org.hbrs.se.ws20.uebung3.Member, Serializable
    {
       final private int id;
       //eigener interner Zaehler zur Vermeidung von doppelten IDs
@@ -58,8 +60,6 @@ public class Container
       }
    }
 
-
-   private ArrayList<Member> memberList =  new ArrayList<Member>();
 
    //Konstruktor
    public Container()
@@ -147,5 +147,15 @@ public class Container
    public ArrayList<Member> getCurrentList()
    {
       return memberList;
+   }
+
+   public void store()
+   {
+
+   }
+
+   public void load()
+   {
+
    }
 }

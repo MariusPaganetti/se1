@@ -36,7 +36,7 @@ public class TestContainer
 
       /**Test korrekter String            +dump*/
       assertEquals("Member (ID = 0 )",mem1.toString());
-      con.dump(); //haendisch ueberpruefen, muss gleich "Member (ID = 0/1) sein"
+      //con.dump(); //haendisch ueberpruefen, muss gleich "Member (ID = 0/1) sein"
       /**Test Remove*/
       assertEquals("Member (ID = 0 ) geloescht",con.deleteMember(0)); //mem1 loeschen
       assertEquals("Kein Member mit der ID: 5 vorhanden",con.deleteMember(5));//String bei nicht vorhandener ID

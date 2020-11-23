@@ -1,17 +1,18 @@
-package org.hbrs.se.ws20.uebung3.persistence;
+package org.hbrs.se.ws20.uebung3;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.util.List;
 
-public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Member> {
+public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Member>
+{
     @Override
-    public void openConnection() throws PersistenceException {
+    public void openConnection() throws PersistenceException
+    {
 
     }
 
     @Override
-    public void closeConnection() throws PersistenceException {
+    public void closeConnection() throws PersistenceException
+    {
 
     }
 
@@ -19,7 +20,8 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
     /**
      * Method for saving a list of Member-objects to a disk (HDD)
      */
-    public void save(List<Member> member) throws PersistenceException  {
+    public void save(List<Member> member) throws PersistenceException
+    {
 
     }
 
@@ -28,7 +30,8 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
      * Method for loading a list of Member-objects from a disk (HDD)
      * Some coding examples come for free :-)
      */
-    public List<Member> load() throws PersistenceException  {
+    public List<Member> load() throws PersistenceException
+    {
         // Some Coding hints ;-)
         // ObjectInputStream ois = null;
         // FileInputStream fis = null;
