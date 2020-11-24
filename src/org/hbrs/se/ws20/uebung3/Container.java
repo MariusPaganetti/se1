@@ -2,7 +2,7 @@ package org.hbrs.se.ws20.uebung3;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Container
+public class Container implements Serializable
 {
    private int zaehlerID = 0;
    private static final Container con = new Container();
@@ -130,13 +130,20 @@ public class Container
       return memberList.contains(member);
    }
    //Funktion, ob eine ID existiert
-   public boolean idExist(int id) throws ContainerException
+   public boolean idExist(int id)
    {
-      if ( null != getMember(id))
+      try
       {
-         return true;
+         if( null != getMember(id) )
+         {
+            return true;
+         }
+         return false;
       }
-      return false;
+      catch(Exception e)
+      {
+         return false;
+      }
    }
 
    public void resetArray()
@@ -151,11 +158,27 @@ public class Container
 
    public void store()
    {
-
+      PersistenceStrategyStream<Member> pss = new PersistenceStrategyStream<>();
+      try
+      {
+         pss.save(memberList);
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace();
+      }
    }
 
    public void load()
    {
-
+      PersistenceStrategy<Member> ps = new PersistenceStrategyStream<>();
+      try
+      {
+         memberList = (ArrayList<Member>) ps.load();
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace();
+      }
    }
 }

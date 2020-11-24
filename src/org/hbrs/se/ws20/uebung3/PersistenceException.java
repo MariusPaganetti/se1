@@ -5,6 +5,16 @@ public class PersistenceException extends Exception
 
     private ExceptionType exceptionType;
 
+    public PersistenceException(String fehler_beim_speichern)
+    {
+
+    }
+
+    public String PersistenceException(String fehler_beim_speichern)
+    {
+        return fehler_beim_speichern;
+    }
+
     public ExceptionType getExceptionTypeType()
     {
         return this.exceptionType;

@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class MemberView
 {
-   public void dump(ArrayList<Member> memberList)
+   public static void dump(ArrayList<Container.Member> memberList)
    {
       String output = "";
       for (int i = 0; i<memberList.size(); i++)
       {
-         output+=memberList.get(i).toString()+"\n";
+         System.out.print(memberList.get(i).toString()+"\n");
       }
-      System.out.println(output);
    }
 }
