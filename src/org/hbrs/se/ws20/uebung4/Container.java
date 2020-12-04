@@ -2,42 +2,35 @@ package org.hbrs.se.ws20.uebung4;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import org.hbrs.se.ws20.uebung4.model.ContainerException;
+import org.hbrs.se.ws20.uebung4.model.ContainerUtilities;
+import org.hbrs.se.ws20.uebung4.model.PersistenceStrategy;
+import org.hbrs.se.ws20.uebung4.model.PersistenceStrategyStream;
 import org.hbrs.se.ws20.uebung4.model.Userstory;
 
-public class Container implements Serializable
+public class Container
 {
    private int zaehlerID = 0;
-   private static Container con = new Container();
+   private static Container con = null;
    private ArrayList<Userstory> usList =  new ArrayList<Userstory>();
 
-   public synchronized Container getContainerinstance()
+   public static synchronized Container getContainerinstance()
    {
+      if (con==null)
+      {
+         con = new Container();
+      }
       return con;
    }
 
-   /**
-    *ausgelagerte Funktion fuer deleteMember
-    */
-  /** private Member getMember(int id) throws ContainerException
-   {
-      for (int i = 0; i<memberList.size(); i++)
-      {
-         if (memberList.get(i).getID() == id)
-         {
-            return memberList.get(i);
-         }
-      }
-      return null;
-   }*/
-
-   public String deleteMember(int id) throws ContainerException
+   public String deleteStory(int id) throws ContainerException
    {
       String output =""; //temp speichern der Member ID
       try
       {
-         Member memberToRemove = getMember(id);
+         Userstory memberToRemove = ContainerUtilities.getStory(id);
          output = memberToRemove.toString();
-         memberList.remove(memberToRemove);
+         usList.remove(memberToRemove);
       }
       catch(Exception e)
       {
@@ -48,15 +41,15 @@ public class Container implements Serializable
 
    public void addUserstory(Userstory us) throws ContainerException
    {
-      if(!memberExist(member) && member!=null && !idExist(member.getID()))
+      if(!ContainerUtilities.storyExist(us) && us!=null && !ContainerUtilities.idExist(us.getId()))
       {
-         memberList.add(member);
+         usList.add(us);
       }
       else
       {
          try
          {
-            throw new ContainerException(member.getID());
+            throw new ContainerException(us.getId());
          }
          catch(Exception e)//wegen null PointerException bei leerem add
          {
@@ -68,30 +61,6 @@ public class Container implements Serializable
    public int size()
    {
       return usList.size();
-   }
-
-   /**
-    * Funktion, ob ein Member bereits in der Liste existiert
-    */
-   public boolean memberExist(Member member)
-   {
-      return memberList.contains(member);
-   }
-   //Funktion, ob eine ID existiert
-   public boolean idExist(int id)
-   {
-      try
-      {
-         if( null != getMember(id) )
-         {
-            return true;
-         }
-         return false;
-      }
-      catch(Exception e)
-      {
-         return false;
-      }
    }
 
    public void resetArray()

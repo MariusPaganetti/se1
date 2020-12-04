@@ -12,7 +12,7 @@ public class Userstory
    private int risiko;
    private double prio;
 
-   Userstory()
+   public Userstory()
    {
 
    }
@@ -30,7 +30,7 @@ public class Userstory
       setPrio(berechnePrio());
    }
 
-   private double berechnePrio()
+   public double berechnePrio()
    {
       return (mehrwert+strafe) / (aufwand+risiko);
    }
@@ -95,6 +95,25 @@ public class Userstory
    public void setId(int id)
    {
       this.id = id;
+   }
+   //fuer automatische Zuweisung einer ID
+   public void setId()
+   {
+      int i = 1;
+      boolean freieID = false;
+      while (!freieID)
+      {
+         if (ContainerUtilities.idExist(i))
+         {
+            //ID bereits vergeben
+            i++;
+         }
+         else
+         {
+            freieID = true;
+            setId(i);
+         }
+      }
    }
 
    public void setBeschreibung(String beschreibung)
