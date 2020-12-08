@@ -73,7 +73,7 @@ public class Container
       return usList;
    }
 
-   public void store()
+   public void storePss()
    {
       PersistenceStrategyStream<Userstory> pss = new PersistenceStrategyStream<>();
       try
@@ -86,12 +86,31 @@ public class Container
       }
    }
 
-   public void load()
+   public void loadPss()
    {
       PersistenceStrategy<Userstory> ps = new PersistenceStrategyStream<>();
       try
       {
          usList = (ArrayList<Userstory>) ps.load();
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace();
+      }
+   }
+
+   public void mergePss(){
+      PersistenceStrategy<Userstory> ps = new PersistenceStrategyStream<>();
+      try
+      {
+         ArrayList<Userstory> temp = (ArrayList<Userstory>) ps.load();
+
+         for (int i=0; i<temp.size(); i++){
+            if(usList.contains(temp.get(i))){
+               temp.get(i).setId();
+            }
+            usList.add(temp.get(i));
+         }
       }
       catch(Exception e)
       {

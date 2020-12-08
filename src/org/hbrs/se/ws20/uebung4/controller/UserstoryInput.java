@@ -1,7 +1,6 @@
 package org.hbrs.se.ws20.uebung4.controller;
 
 import java.util.Scanner;
-
 import org.hbrs.se.ws20.uebung4.model.ContainerUtilities;
 import org.hbrs.se.ws20.uebung4.model.PersistanceController;
 import org.hbrs.se.ws20.uebung4.model.Userstory;
@@ -12,34 +11,46 @@ public class UserstoryInput
    //***
    Scanner sc = new Scanner(System.in);
 
+   private static UserstoryInput usi = null;
+
+   public static synchronized UserstoryInput getUserstoryInputinstance()
+   {
+      if (usi==null)
+      {
+         usi = new UserstoryInput();
+      }
+      return usi;
+   }
+
    public void start()
    {
       boolean end = false;
+
 
       System.out.println("Userstory-Anwendung von mpagan2s und sbulut2s | Version 0.1");
       while (!end)
       {
          String input = sc.next();
 
-         if (input=="enter")
+         if (input.equals("enter"))
          {
             enterStory();
          }
 
-         else if (input=="store")
+         else if (input.equals("store"))
          {
             PersistanceController.store();
          }
 
-         else if (input=="load")
+         else if (input.equals("load"))
          {
             input = sc.next();
-            if (input=="merge")
+            if (input.equals("merge"))
             {
 
             }
 
-            else if (input=="force")
+            else if (input.equals("force"))
             {
 
             }
@@ -50,17 +61,17 @@ public class UserstoryInput
             }
          }
 
-         else if (input=="dump")
+         else if (input.equals("dump"))
          {
             ContainerView.dump();
          }
 
-         else if (input=="exit")
+         else if (input.equals("exit"))
          {
             end = true;
          }
 
-         else if (input=="help" || input=="?")
+         else if (input.equals("help") || input.equals("?"))
          {
             System.out.println("Alle vefuegbaren Befehle");
             System.out.println("enter -> Eingabe einer User Story");

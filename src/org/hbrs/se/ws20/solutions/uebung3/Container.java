@@ -167,5 +167,4 @@ public class Container {
 			throw new PersistenceException( PersistenceException.ExceptionType.ImplementationNotAvailable , "Not implemented!" );
 		}
 	}
-
 }

@@ -1,5 +1,7 @@
 package org.hbrs.se.ws20.uebung4.controller;
 
+import org.hbrs.se.ws20.uebung4.Container;
+import org.hbrs.se.ws20.uebung4.model.PersistanceController;
 import org.hbrs.se.ws20.uebung4.model.PersistenceStrategyStream;
 
 public class Main
@@ -17,9 +19,10 @@ public class Main
       String datei = "src/org/hbrs/se/ws20/uebung4/Data_UserStories.ser";
 
       //Parameter uebertragen
-
-
       PersistenceStrategyStream.setDatei(datei);
+      PersistanceController.setMethod(persistanceMethod);
 
+      Container con = Container.getContainerinstance();
+      UserstoryInput.getUserstoryInputinstance().start();
    }
 }
