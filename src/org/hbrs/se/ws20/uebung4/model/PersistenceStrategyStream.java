@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PersistenceStrategyStream<Userstory> implements PersistenceStrategy<Userstory>
 {
-    String datei = "src/org/hbrs/se/ws20/uebung4/ContainerData.ser";
+    static String datei = "src/org/hbrs/se/ws20/uebung4/ContainerData.ser";
     FileInputStream fis = null;
     FileOutputStream fos = null;
     ObjectInputStream ois = null;
@@ -105,5 +105,10 @@ public class PersistenceStrategyStream<Userstory> implements PersistenceStrategy
         // return newListe
 
         // and finally close the streams (guess where this could be...?)
+    }
+
+    public static void setDatei(String s)
+    {
+        datei = s;
     }
 }

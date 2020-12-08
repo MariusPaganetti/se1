@@ -99,6 +99,7 @@ public class UserstoryInput
       System.out.println("Aus den Werten hat sich die Priorisierung: "+us.getPrio()+" berechnet.");
       System.out.println("Sie haben folgende Userstory angelegt:");
       System.out.println(us.toString());
+      System.out.println("---------------------------------------------");
    }
 
    private void enterID (Userstory us)
@@ -171,7 +172,18 @@ public class UserstoryInput
 
    private int integerPruefung()//muss umgesetzt werden
    {
-      return 1;
+      int number = 0;
+      boolean positiv = false;
+
+      while (!positiv)
+      {
+         number = sc.nextInt();
+         if (number>0)
+         {
+            positiv = true;
+         }
+      }
+      return number;
    }
 
 }
