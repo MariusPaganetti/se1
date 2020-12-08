@@ -3,6 +3,7 @@ package org.hbrs.se.ws20.uebung4.controller;
 import java.util.Scanner;
 
 import org.hbrs.se.ws20.uebung4.model.ContainerUtilities;
+import org.hbrs.se.ws20.uebung4.model.PersistanceController;
 import org.hbrs.se.ws20.uebung4.model.Userstory;
 import org.hbrs.se.ws20.uebung4.view.ContainerView;
 
@@ -14,7 +15,7 @@ public class UserstoryInput
    {
       boolean end = false;
 
-      System.out.println("Userstory-Anwendung von mpagan2s | Version 0.1");
+      System.out.println("Userstory-Anwendung von mpagan2s und sbulut2s | Version 0.1");
       while (!end)
       {
          String input = sc.next();
@@ -26,7 +27,7 @@ public class UserstoryInput
 
          else if (input=="store")
          {
-
+            PersistanceController.store();
          }
 
          else if (input=="load")

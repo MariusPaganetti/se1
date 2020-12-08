@@ -12,7 +12,7 @@ public class Main
        * Dateiname+ort
        */
       //pps = PersistanceStrategeStream | psm = PersistanceStrategyMongoDB
-      String persistanceMethod = "pps";
+      String persistanceMethod = "pss";
       //Datei fuer Stream
       String datei = "src/org/hbrs/se/ws20/uebung4/Data_UserStories.ser";
 
@@ -20,5 +20,6 @@ public class Main
 
 
       PersistenceStrategyStream.setDatei(datei);
+
    }
 }
