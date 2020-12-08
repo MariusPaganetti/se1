@@ -8,6 +8,7 @@ import org.hbrs.se.ws20.uebung4.view.ContainerView;
 
 public class UserstoryInput
 {
+   //***
    Scanner sc = new Scanner(System.in);
 
    public void start()
