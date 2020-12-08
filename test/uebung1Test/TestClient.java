@@ -32,6 +32,6 @@ public class TestClient
     * oder händisch geprüft werden, da auch andere Faktoren neben dem Ergebnis wichtig sind.
     *
     * 
-    * UML befindet sich auf einer Ebene mit control, test und view!
+    * UML befindet sich auf einer Ebene mit control, test und org.hbrs.se.ws20.uebung4.view!
     */
 }
