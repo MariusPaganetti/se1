@@ -88,7 +88,7 @@ public class Container
 
    public void loadPss()
    {
-      PersistenceStrategy<Userstory> ps = new PersistenceStrategyStream<>();
+      PersistenceStrategyStream<Userstory> ps = new PersistenceStrategyStream<>();
       try
       {
          usList = (ArrayList<Userstory>) ps.load();
@@ -100,7 +100,7 @@ public class Container
    }
 
    public void mergePss(){
-      PersistenceStrategy<Userstory> ps = new PersistenceStrategyStream<>();
+      PersistenceStrategyStream<Userstory> ps = new PersistenceStrategyStream<>();
       try
       {
          ArrayList<Userstory> temp = (ArrayList<Userstory>) ps.load();

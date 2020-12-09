@@ -39,14 +39,14 @@ public class Userstory
    public String toString()
    {
       String s = "";
-      s+= getId()+" | ";
-      s+= getBeschreibung()+" | ";
-      s+= getAkzeptanzKriterien()+" | ";
-      s+= getMehrwert()+" | ";
-      s+= getStrafe()+" | ";
-      s+= getAufwand()+" | ";
-      s+= getRisiko()+" | ";
-      s+= getPrio();
+      s+= "ID: "+getId()+" | ";
+      s+= "Beschreibung:"+getBeschreibung()+" | ";
+      s+= "Akzeptanzkriterien:"+getAkzeptanzKriterien()+" | ";
+      s+= "Mehrwert:"+getMehrwert()+" | ";
+      s+= "Strafe"+getStrafe()+" | ";
+      s+= "Aufwand"+getAufwand()+" | ";
+      s+= "Risiko"+getRisiko()+" | ";
+      s+= "Priorisierung:"+getPrio();
       return s;
    }
 
