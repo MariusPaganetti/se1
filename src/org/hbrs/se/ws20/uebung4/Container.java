@@ -109,7 +109,7 @@ public class Container
             if(usList.contains(temp.get(i))){
                temp.get(i).setId();
             }
-            usList.add(temp.get(i));
+            addUserstory(temp.get(i));
          }
       }
       catch(Exception e)
