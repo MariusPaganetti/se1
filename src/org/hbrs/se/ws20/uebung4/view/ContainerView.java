@@ -10,7 +10,7 @@ public class ContainerView extends Container
 {
    public static void dump()
    {
-      System.out.println("dump");
+      //System.out.println("dump");
 
       getContainerinstance().getCurrentList().stream().filter( userStory -> userStory.getAufwand() > 0  )   // Filter
             .sorted(  (us1, us2)  -> Double.compare( us1.getPrio() , us2.getPrio() ) ) // MAP

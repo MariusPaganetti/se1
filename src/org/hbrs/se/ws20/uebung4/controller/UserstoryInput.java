@@ -1,8 +1,12 @@
 package org.hbrs.se.ws20.uebung4.controller;
 
 import java.util.Scanner;
+
+import org.hbrs.se.ws20.uebung4.Container;
+import org.hbrs.se.ws20.uebung4.model.ContainerException;
 import org.hbrs.se.ws20.uebung4.model.ContainerUtilities;
 import org.hbrs.se.ws20.uebung4.model.PersistanceController;
+import org.hbrs.se.ws20.uebung4.model.PersistenceStrategy;
 import org.hbrs.se.ws20.uebung4.model.Userstory;
 import org.hbrs.se.ws20.uebung4.view.ContainerView;
 
@@ -44,20 +48,21 @@ public class UserstoryInput
 
          else if (input.equals("load"))
          {
+            System.out.println("Geben Sie 'merge', 'force' oder sonstiges fuer normalen load an");
             input = sc.next();
             if (input.equals("merge"))
             {
-
+               PersistanceController.merge();
             }
 
             else if (input.equals("force"))
             {
-
+               PersistanceController.force();
             }
 
             else
             {
-               //was passiert hierbei?
+               PersistanceController.load();
             }
          }
 
@@ -113,6 +118,14 @@ public class UserstoryInput
       System.out.println("Sie haben folgende Userstory angelegt:");
       System.out.println(us.toString());
       System.out.println("---------------------------------------------");
+      try
+      {
+         Container.getContainerinstance().addUserstory(us);
+      }
+      catch(ContainerException e)
+      {
+         e.printStackTrace();
+      }
    }
 
    private void enterID (Userstory us)
@@ -121,7 +134,15 @@ public class UserstoryInput
       System.out.println("ID-Nummer der Story (freie Auswahl durch Zahl>0, 0 für automatische Zuweisung):");
       while (invalid)
       {
-         int auswahl = sc.nextInt();
+         int auswahl=0;
+         try
+         {
+            auswahl = sc.nextInt();
+         }
+         catch(Exception e)
+         {
+            System.out.println("Sie haben einen ungueltigen Wert eingegeben, nun wird eine autoamtische ZUweisung stattfinden");
+         }
          if (auswahl>0)
          {
             if (ContainerUtilities.idExist(auswahl))
@@ -158,7 +179,7 @@ public class UserstoryInput
    {
       System.out.println("\nGeben Sie die Akzeptanzkriterien der Userstory an.");
       System.out.println("Dies geht über mehrere Zeilen. # markiert das Ende");
-      us.setAkzeptanzKriterien("#");
+      us.setAkzeptanzKriterien(langerText("#"));
    }
 
    private String langerText(String stop)
@@ -179,7 +200,11 @@ public class UserstoryInput
             s+= eingabe+"\n";
          }
       }
-      s = s.substring(0,s.length()-2);
+      if (s.length()==0)
+      {
+         return "";
+      }
+      s = s.substring(0,s.length()-1);
       return s;
    }
 
@@ -194,6 +219,10 @@ public class UserstoryInput
          if (number>0)
          {
             positiv = true;
+         }
+         else
+         {
+            System.out.println("Ungueltiger Wert. Probieren Sie es erneut");
          }
       }
       return number;
